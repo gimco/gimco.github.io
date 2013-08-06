@@ -1038,9 +1038,12 @@ img, audio, video, canvas { max-width: 100%; }
     CUSTOM
  * ============================================================= */
 
+ 
 
-p {
-    text-align: justify;
+@media (min-width: 30em) {
+    p {
+        text-align: justify;
+    }    
 }
 
 .head h3 {
