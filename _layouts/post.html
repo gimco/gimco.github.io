@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<article class="container space-bottom">
+    <header>
+    	{% assign pubdate = page.date | date_to_string | split: ' ' %}
+        <div class="dateBox">
+        	<span class="month">{{pubdate[1]}}</span>
+        	<span class="day">{{pubdate[0]}}</span>
+        	<span class="year">{{pubdate[2]}}</span></div>
+        <h1>{{ page.title }}</h1>
+    </header>
+	{{ content }}
+</article>
+<div class="container">
+	{% if page.previous.url %}
+    <a class="float-left text-small" href="{{ page.previous.url }}"><i class="icon-arrow-left"></i> {{ page.previous.title }}</a>
+	{% endif %}
+	{% if page.next.url %}
+    <a class="float-right text-small" href="{{ page.next.url }}">{{ page.next.title }} <i class="icon-arrow-right"></i></a>
+	{% endif %}
+</div>
