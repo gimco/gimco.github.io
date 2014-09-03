@@ -2,4 +2,4 @@ name: gimco's tech disorder
 description: undefined ;)
 url: http://blog.gimco.es
 markdown: redcarpet
-pygments: true
+highlighter: pygments
