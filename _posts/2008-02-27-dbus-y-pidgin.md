@@ -2,7 +2,7 @@
 layout: post
 title: DBus y Pidgin
 tags: dbus, linux, mono, pidgin
-permalink: /:year/:month/dbus-y-pidgin.html
+permalink: /2008/02/dbus-y-pidgin.html
 ---
 
 Hoy toca hablar de [DBus](http://www.freedesktop.org/wiki/Software/dbus). DBus es un bus de comunicaciones que las aplicaciones utilizan para intercambiar mensajes. Es la forma mas sencilla para controlar el comportamiento de muchas de nuestras aplicaciones de escritorio. En este caso vamos a controlar pidgin desde una aplicación hecha con mono.  

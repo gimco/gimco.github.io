@@ -2,7 +2,7 @@
 layout: post
 title: gstreamer
 tags: gstreamer, linux, mono, nintendods
-permalink: /:year/:month/gstreamer.html
+permalink: /2008/03/gstreamer.html
 ---
 
 gstreamer es un framework multimedia que nos permite construir cadenas de componentes para procesar audio y video. Podemos crear un "pipeline" que reproduzca un mp3, o que visualice un video. La sentencia siguiente es capaz de reproducir un fichero .flv  

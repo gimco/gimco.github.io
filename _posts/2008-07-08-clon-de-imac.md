@@ -2,7 +2,7 @@
 layout: post
 title: Clon de imac
 tags: apple, imac
-permalink: /:year/:month/clon-de-imac.html
+permalink: /2008/07/clon-de-imac.html
 ---
 
 Averatec ha creado un ordenador todo en uno al estilo iMac (por no decir que es un clon o una copia descarada). Aún así, despues de ver el precio y características, todavía me inclinaría por el iMac aún siendo un poco mas caro. Alugnos puntos a favor del imac frente a este clon:  

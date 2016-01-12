@@ -2,7 +2,7 @@
 layout: post
 title: Cosas pendientes
 tags: chorrada, linux, mono, proyectos
-permalink: /:year/:month/cosas-pendientes.html
+permalink: /2008/02/cosas-pendientes.html
 ---
 
 He perdido tanto tiempo configurando el blog, que ya no tengo ganas de escribir sobre lo que había hecho ultimamente, aunque para que no se me olvide hacerlo, voy a ponerme una lista de las cosas sobre las que comentar:  

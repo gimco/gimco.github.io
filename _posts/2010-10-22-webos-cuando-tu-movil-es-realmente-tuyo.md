@@ -2,7 +2,7 @@
 layout: post
 title: webOS, cuando tu movil es realmente tuyo
 tags: webos, palm, hp, webosroundup
-permalink: /:year/:month/webos-cuando-tu-movil-es-realmente-tuyo.html
+permalink: /2010/10/webos-cuando-tu-movil-es-realmente-tuyo.html
 ---
 
 Ayer leí un artículo de la página [webOSroundup](http://www.webosroundup.com/) que me ha gustado tanto, que me he decidido a traducirlo y publicarlo aquí. Y ya me ha tenido que gustar, por que hacía mas de un año que no escribía nada por aquí.  

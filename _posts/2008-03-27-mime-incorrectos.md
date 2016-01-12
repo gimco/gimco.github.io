@@ -2,7 +2,7 @@
 layout: post
 title: mime incorrectos
 tags: gnome, mono, monodevelop
-permalink: /:year/:month/mime-incorrectos.html
+permalink: /2008/03/mime-incorrectos.html
 ---
 
 Desde hacía algún tiempo no sabía porque cuando desde MonoDevelop intentaba abrir un archivo .xml este no se abría dentro de monodevelop, si no que abría el firefox?!. Así que me dispuse a investigar como decidía MonoDevelop cada tipo de archivo.  

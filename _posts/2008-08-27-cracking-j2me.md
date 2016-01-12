@@ -2,7 +2,7 @@
 layout: post
 title: Cracking j2me
 tags: j2me, java, me4se
-permalink: /:year/:month/cracking-j2me.html
+permalink: /2008/08/cracking-j2me.html
 ---
 
 Como siempre, los periodos venariegos nos relaja demasiado, y debemos de ejercitar nuestra mente de vez en cuando. Uno de las cosas que llevo tiempo queriendo hacer es leerme algún libro en inglés. Pero claro, el vocabulario siempre es un handicap. Entonces comencé a buscar algún programilla j2me para mi nokia 6300, con traducciones de palabras.  

@@ -2,7 +2,7 @@
 layout: post
 title: OpenKapow y Yahoo Pipes
 tags: mashup, openkapow, pipes, rss, yahoo
-permalink: /:year/:month/openkapow-y-yahoo-pipes.html
+permalink: /2008/04/openkapow-y-yahoo-pipes.html
 ---
 
 Una de mis herramientas favoritas es RoboMaker de OpenKapow. RoboMaker es una herramienta que nos permite crear mashups fácilmente. Con esta herramienta gráfica podemos extraer y procesar información de cualquier página web. Una de las primeros robots que hice, fue uno que se conectaba a la página de los40.com, extraía la lista con los nombres de las 40 canciones y realizaba un búsqueda en youtube con esos nombre, para filnamente obtener un .rss con los 40 videos correspondientes a los 40 principales, un día de estos lo explicaré paso a paso :). Con este tipo de servicios puedes hacer muchas cosas.  

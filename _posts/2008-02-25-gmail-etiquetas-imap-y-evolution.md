@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GMail, Etiquetas, Imap y Evolution
-permalink: /:year/:month/gmail-etiquetas-imap-y-evolution.html
+permalink: /2008/02/gmail-etiquetas-imap-y-evolution.html
 ---
 
 Hace tiempo que gmail permite el acceso al correo a través de IMAP, permitiendo tener una copia de todos tus correos (o al menos los títulos) en cualquier ordenador con tu programa de correo. La configuración es muy sencilla y todo funciona de maravilla ... excepto las etiquetas.  

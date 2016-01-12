@@ -2,7 +2,7 @@
 layout: post
 title: Aplicaciones como churros
 tags: ares, churroapp, hp, palm, webos
-permalink: /:year/:month/aplicaciones-como-churros.html
+permalink: /2011/01/aplicaciones-como-churros.html
 ---
 
 En estas fechas navideñas, y sobre todo el día de año nuevo, casi es una tradición felicitar a familiares y amigos con algún mensaje. Supongo que las operadoras estarán muy contentas con la cantidad de mensajes de texto enviados por sus usuarios el día 1 de Enero. Aunque últimamente, con el auge de las redes sociales, los smartphones y las tarifas planas de datos, muchos optan por el mensaje privado via tuenti, facebook, twitter o email. No recuerdo cuando fue la última vez que envié un SMS, normalmente siempre hablo via gtalk o email con mis contatos.  

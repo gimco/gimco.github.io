@@ -2,7 +2,7 @@
 layout: post
 title: Recuperar la contraseña en PSI
 tags: linux, password, pidgin, psi
-permalink: /:year/:month/recuperar-la-pass-en-psi.html
+permalink: /2008/03/recuperar-la-pass-en-psi.html
 ---
 
 En el trabajo, los windoseros (y algunos kderos) utilizan PSI como cliente de mensajería jabber. Hoy un compañero se iba a pasar a pidgin, pero no recordaba su contraseña en una de las cuentas jabber. Afortunadamente buscando encontramos una solución para [esto](http://blogmal.42.org/rev-eng/psi-password.story) (ventajas de ser opensource).  
