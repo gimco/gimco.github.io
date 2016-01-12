@@ -2,7 +2,7 @@
 layout: post
 title: foresight y gnome 2.22
 tags: foresight, gnome, linux
-permalink: :year/:month/foresight-y-gnome-222.html
+permalink: /:year/:month/foresight-y-gnome-222.html
 ---
 
 Llevo un tiempo utilizando foresight, y la verdad es que estoy muy contento, todo funciona a la perfección, y sinceramente ha sido la distribución que menos he tenido que configurar e instalar paquetes no libres adicionales (java, flash, codecs video, ...).  

@@ -2,7 +2,7 @@
 layout: post
 title: foresight y gnome 2.22 (2)
 tags: foresight, gnome, linux
-permalink: :year/:month/foresight-y-gnome-222-2.html
+permalink: /:year/:month/foresight-y-gnome-222-2.html
 ---
 
 Pues todo ha funcionado a la perfección, para pasar de foresight 1.4 a 2.0 tuve que ejecutar el siguiente comando:  

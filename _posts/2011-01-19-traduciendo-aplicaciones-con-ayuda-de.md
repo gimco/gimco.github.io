@@ -2,7 +2,7 @@
 layout: post
 title: Traduciendo aplicaciones desde consola
 tags: bash, google, linux, script, traducir
-permalink: :year/:month/traduciendo-aplicaciones-con-ayuda-de.html
+permalink: /:year/:month/traduciendo-aplicaciones-con-ayuda-de.html
 ---
 
 Recientemente un compañero de trabajo, me comentó durante el desayuno que estaba harto de hacer lo mismo durante toda la mañana. Le habían encargado realizar una traducción de una de nuestras aplicaciones al euskera. El ni habla, ni entiende nada de vasco. Así que la idea era realizar una primera traducción usando algún traductor automático, para que después nuestro cliente corrigiera las frases y expresiones, sobre un trabajo ya realizado.  

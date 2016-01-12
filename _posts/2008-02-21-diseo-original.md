@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Diseño original
-permalink: :year/:month/diseo-original.html
+permalink: /:year/:month/diseo-original.html
 ---
 
 Esta plantilla esta basada en "Greenery" de Binary Bonsai , adaptada para Blogger por BlogandWeb. Puedes descargarla desde la siguiente url:  

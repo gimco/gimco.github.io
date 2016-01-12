@@ -2,7 +2,7 @@
 layout: post
 title: Compartiendo archivos entre linux y Leopard
 tags: apple, compartir, ficheros, finder, linux, macosx
-permalink: :year/:month/compartiendo-archivos-entre-linux-y.html
+permalink: /:year/:month/compartiendo-archivos-entre-linux-y.html
 ---
 
 La forma más sencilla de compartir archivos entre un sistema linux y MacOS X, parece ser AppleTalk, que es el protocolo utilizado por Apple para compartir archivos e impresoras en redes locales. Vendría a ser equivalente de SMB en redes windows. De la misma forma que tenemos Samba, para acceder a redes SMB, existe "netatalk" para comunicarnos con redes AppleTalk. Solo debemos instalar dicho paquete:  

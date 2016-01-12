@@ -2,7 +2,7 @@
 layout: post
 title: MonoDevelop y Evolution
 tags: evolution, foresight, linux, mono, monodevelop
-permalink: :year/:month/monodevelop-y-evolution.html
+permalink: /:year/:month/monodevelop-y-evolution.html
 ---
 
 Después de hacer la actualización del sistema me dispuse a abrir mi proyecto con MonoDevelop, pero al realizar la actualización, la versión 0.18 que compilé e instalé localmente no funcionó. Al comprobar que ya estaba el paquete 1.0 en foresight (es una de las mejores cosas que tiene esta distribución, tiene los paquetes la mayoría de paquetes recien salidos del horno), por lo que instalé MonodDevelop 1.0.  
