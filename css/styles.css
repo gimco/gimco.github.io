@@ -1130,3 +1130,8 @@ h1, .h1 {
     background-color: #3b5998;
     border-color: #3b5998;
 }
+
+article > p > img {
+    display: block;
+    margin: 0 auto;
+}
