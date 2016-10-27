@@ -7,7 +7,17 @@ layout: default
         <div class="dateBox">
         	<span class="month">{{pubdate[1]}}</span>
         	<span class="day">{{pubdate[0]}}</span>
-        	<span class="year">{{pubdate[2]}}</span></div>
+        	<span class="year">{{pubdate[2]}}</span>
+        </div>
+        <span class="text-small"><i class="icon-time"></i>
+            {% assign words = content | number_of_words %}
+            {% if words < 360 %}
+               1 minuto
+            {% else %}
+               {{ words | divided_by:180 }} minutos
+            {% endif %}
+            de lectura
+        </span>
         <h1>{{ page.title }}</h1>
     </header>
 	{{ content }}
