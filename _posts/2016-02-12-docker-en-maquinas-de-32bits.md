@@ -33,7 +33,9 @@ sudo mv /tmp/gocode/bin/boot2docker-cli /usr/bin/boot2docker
 
 En segundo lugar necesitamos el comando docker, que sería la parte cliente. Desde la [sección de instalación de la página oficial][docker-install] se ofrece un enlace para descargar [el binario para 32 bits][docker-i386]:
 
- https://get.docker.com/builds/Linux/i386/docker-latest
+~~~
+https://get.docker.com/builds/Linux/i386/docker-latest
+~~~
 
 Ya tendríamos todo lo necesario en nuestra máquina de 32 bits. La primera vez necesitaremos que boot2docker se descargue y configure la máquina virtual de VirtualBox que proporcionará la parte servicio de docker:
 
