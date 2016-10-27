@@ -13,15 +13,15 @@ Parecía que ya no eran válidos. Se lo comenté a mi amigo pero me decía que *
 
 Aprovechando que disponía de un servidor Apache publicado en Internet, y que en el fichero `/var/log/apache2/access.log` se muestran las peticiones que se realizan además del `User-Agent`, introduje en la aplicación una url hacia mi servidor a ver que rastro dejaba la aplicación:
 
-<pre>
+~~~
 80.35.XXX.XXX - - [01/Aug/2014:12:53:52 +0200] "GET /listas/prueba.xml HTTP/1.1" 404 976 "-" "Dalvik/1.6.0 (Linux; U; Android 4.4.2; Nexus 4 Build/KOT49H)"
-</pre>
+~~~
 
 Ahí se puede ver el `User-Agent` que utiliza la aplicación, `Dalvik/1.6.0` mas la versión de Android y el modelo del dispositivo, en mi caso un Nexus 4. Así que solo queda probar suerte y realizar una petición con este `User-Agent`. Así que utilizando wget hacemos la siguiente petición:
 
-{% highlight bash %}
+~~~bash
 curl -A "Dalvik/1.6.0 (Linux; U; Android 4.4.2; Nexus 4 Build/KOT49H)" http://spliveapp.com/listas/Deportes.xml
-{% endhighlight %}
+~~~
 
 **Error 404 de nuevo**. Vaya, parece que hay algo más. Aprovechando que la url es http, es decir, va sin cifrar, opté por la forma mas sencilla posible, instalé un sniffer en el móvil para capturar el trafico que generaba la aplicación al cargar la url. Así que inicié el sniffer ([tPacketCapture]) y cargué de nuevo la url en la aplicación. Efectivamente la aplicación cargó los canales. Detenido la aplicación, enviado el fichero .pcap generado al ordenador y analizado con wireshark, se puede ver que la aplicación hace dos peticiones. Una ya la conocíamos, con la misma respuesta 404 que la anterior. Pero la siguiente es muy familiar, es la original con el sufijo `_Splive`.
 
@@ -29,7 +29,7 @@ curl -A "Dalvik/1.6.0 (Linux; U; Android 4.4.2; Nexus 4 Build/KOT49H)" http://sp
 
 Escribiendo esta nueva url `http://spliveapp.com/listas/Deportes_Splive.xml` en el navegador ahora sí que obtenemos algo mas interesante:
 
-{% highlight xml %}
+~~~xml
 <channels_cinema>
     ...
     <channel>
@@ -55,7 +55,7 @@ Escribiendo esta nueva url `http://spliveapp.com/listas/Deportes_Splive.xml` en 
     </channel>
     ...
 </channels_cinema>
-{% endhighlight %}
+~~~
 
 Modificando otras urls también se obtiene estos xml con la información deseada. Así que parece que el sistema de "seguridad" consiste en devolver un error 404 para despistar, y agregar el sufijo `_Splive` a la url para obtener los datos.
 
@@ -65,19 +65,19 @@ A simple vista parece que algunas de las propiedades que vienen en el xml (las m
 
 Llegados a este punto y teniendo solamente estos datos binarios no podemos deducir que sistema se utiliza, así que para buscar pistas se opta por intentar analizar la aplicación. Para ello obtenemos el APK directamente desde el móvil (O desde aptoide) y utilizando la herramienta [apktool] descomprimimos y desensamblamos la aplicación en busca de nuevas pistas.
 
-{% highlight bash %}
+~~~bash
 apktool d splivetv.apk
-{% endhighlight %}
+~~~
 
 Explorando entre los ficheros creados se puede ver el nombre `Jasypt` . [Jasypt] es una librería Java con diversas utilidades para encriptar información, por lo que es mas que probable que sea esta librería la utilizada para cifrar y descifrar los datos interesantes. Buscando en el código descompilado donde se utiliza la librería jasypt podremos saber que tipo de cifrado se utiliza.
 
-{% highlight bash %}
+~~~bash
 grep jasypt * -R | grep -v 'smali/org/jasypt'
-{% endhighlight %}
+~~~
 
 Entre los resultados podemos ver que se utiliza dentro de algunas clases como es el caso de `smali/com/tdt/spliveTV/AsyncTasks/ChannelsParserDOM.smali`. Aquí podemos ver que `com.tdt.spliveTV` es el paquete Java utilizado por el código de la aplicación, y la clase tiene un nombre muy revelador `ChannelsParserDOM`. Explorando esta clase y viendo donde se utiliza las clases Jasypt podemos ver claramente que se crea un objeto de tipo [BasicTextEncryptor] y que posteriormente se estable la clave de cifrado con una llamada al método setPassword. La cadena utilizada como contraseña aparece en este mismo fichero. Solo queda probar a descifrar los datos con esta clave usando la misma técnica que utilice Jasypt. Después de leer un poco [parece que con OpenSSL no lo podemos descifrar fácilmente][openssl] ya que la configuración del algoritmo DES utilizado para el cifrado es diferente en OpenSSL y Jasypt, así que lo mas fácil es hacerse un pequeño programa en java que utilizando la misma librería, nos descifre la información que le pasemos por parámetro:
 
-{% highlight java %}
+~~~java
 import org.jasypt.util.text.BasicTextEncryptor;
 
 public class Splive {
@@ -87,23 +87,23 @@ public class Splive {
         System.out.println(bte.decrypt(args[0]));
     }
 }
-{% endhighlight %}
+~~~
 
 Y para compilarlo, descargamos la librería [jasypt-1.9.2.jar] y ejecutamos lo siguiente:
 
-{% highlight bash %}
+~~~bash
 javac -cp jasypt-1.9.2.jar:. Splive.java
-{% endhighlight %}
+~~~
 
 Una vez compilada la clase, la ejecutamos pasando como parámetros los trozos de Base64 que vimos en el XML anterior, y obtenemos la siguiente información:
 
-{% highlight bash %}
+~~~bash
 java -cp jasypt-1.9.2.jar:. Splive "Chorizo Base64 del xml"
-{% endhighlight %}
+~~~
 
 Así que podemos ver por fin los datos que estábamos buscando:
 
-<pre>
+~~~
 rtmp:
     rtmp://50.7.69.170/iguide playpath=XXXXXX swfUrl=http://cdn1.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=YYYYYY
 
@@ -112,7 +112,7 @@ link_logo:
 
 url_html:
     http://servicios.elpais.com/programacion-tv/canal/goltv/
-</pre>
+~~~
 
 Parece que por lo tanto, se está utilizando la página iguide.to como fuente de la emisión, y vemos el enlace RTMP junto con los parámetros utilizados para asegurar la conexión, y podemos utilizar algún reproductor que soporte RTMP (como [VLC]) para comprobar que efectivamente funciona, con lo que podríamos reproducirlo desde el ordenador, o transformar la emisión a MP4 usando rtmpdump y enviar la emisión a tu propia televisión por ejemplo.
 
