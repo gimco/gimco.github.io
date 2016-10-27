@@ -1,5 +1,5 @@
 name: gimco's tech disorder
 description: undefined ;)
 url: http://blog.gimco.es
-markdown: redcarpet
-highlighter: pygments
+markdown: kramdown
+highlighter: rouge
