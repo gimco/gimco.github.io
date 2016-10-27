@@ -19,4 +19,6 @@ Para formatear bloques se encierran con ```LENGUAJE y ```, o ~~~LENGUAJE y ~~~
 Para incrustar imágenes ![texto alternativo](url)
 
 
-
+# Generar estilos para rouge
+https://github.com/jneen/rouge/issues/229
+gem bundle rougify style --scope pre.highlighted base16.solarized.dark
