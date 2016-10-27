@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Retropie: Crea tu consola retro"
+title: "Retropie: Crea tu retroconsola"
 ---
 
 Hace unos meses Nintendo anunciaba una nueva consola destinada a tocar la fibra sensible de todos los ochenteros que hemos tenido la suerte de haber conocido la maravillosa generación de consolas Atari/MasterSystem/Nes/MegaDrive/SuperNintendo. Se trata de la [Nintendo Classic Mini][nintendo-classic] una réplica en miniatura de la [NES][NES] con una selección de 30 juegos, simples, espartanos, pero super adictivos.
@@ -15,7 +15,7 @@ No tengo la menor duda de que será un superventas estas navidades. Aunque podr�
 
 Para resolver estos inconvenientes siempre podemos crear nuestra propio sistema de emulación, [algo pequeñito][algo-pequenito] del estilo de la Nintendo Classic Mini, algo sencillo, para enchufar y jugar. Y nada como una RaspberryPi para ajustarse a estos requisitos.
 
-# Raspberry
+## Raspberry
 
 De los modelos de Raspberry mas actuales que podemos elegir, tenemos la [Raspberry Pi Zero][pi-zero] que es la mas pequeña y barata, pero que no dispone de WI-FI, ni Bluetooth, ni salida RCA/Euroconector, ni puertos USB “de los normales”. Aunque si eres manitas siempre puedes [añadir una salida RCA][zero-rca], [añadir un módulo wifi][zero-wifi], y buscar algún HUB USB.
 
@@ -28,7 +28,7 @@ Y la opción mas recomendable y sencilla es usar la [Raspberry Pi 3 Model B][pi-
 
 ![](/assets/raspberry-amazon.png)
 
-# Instalación
+## Instalación
 
 El siguiente paso sería instalar el software necesario. Tendremos que instalar un sistema operativo para Raspberry (cualquier de los muchos sabores de linux que hay), instalar y configurar cada uno de los emuladores con los que querríamos jugar (FCEUmm, Snes9x, DOSBox, ScummVM, Mupen, PPSSPP, y la lista sigue ...), configurar los mandos USB que queramos utilizar. Pero, una vez que lo hayamos hecho, ¿como hacemos para elegir el emulador con el que queremos jugar cada vez? Necesitaríamos también un teclado y raton para poder iniciar cada emulador por separado, y poder cerrarlo y elegir el siguiente. Cada emulador tiene su propio interfaz, sus opciones de configuración, su proceso de mapeo de teclas y botones del mando, etc.
 
@@ -40,7 +40,7 @@ EmulationStation es la aplicación que querremos iniciar por defecto. Nos permit
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/AVQVmsFOclM" frameborder="0" allowfullscreen></iframe>
 
-# Retropie
+## Retropie
 
 Afortunadamente existe un proyecto que se ocupa de todo lo anterior. [Retropie] es un proyecto que se encarga de prepararnos una distribución Debian para Raspberry junto con libretro/retroarch, con todos los emuladores y con EmulationStation de inicio. **¡Así que todo se reduce a copiar la distribución de Retropie a nuestra microSD, y listo!**
 
