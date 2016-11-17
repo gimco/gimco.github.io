@@ -86,7 +86,7 @@ exec java -Xmx1g -server -cp $CLJ_JAR clojure.main $@
 Básicamente lo que hacemos es buscar la versión mas actual de lein que contiene las librerías de clojure e iniciar una máquina virtual de Java pasando todos los parámetro recibidos. Si no tenemos lein podemos especificar en la variable `CLJ_JAR` la ruta al fichero `clojure-1.X.jar` que queramos usar. Después de crear este fichero podremos crear scripts con clojure que sean ejecutable utilizando el siguiente shebang:
 
 ```clojure
-#!/usr/bin/env cli
+#!/usr/bin/env clj
 
 (println "hola mundo")
 ```
