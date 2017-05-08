@@ -292,7 +292,7 @@ xoajoj 2
 2016-08-20 1
 ~~~
 
-Esto quiere decir que el usuario 'xoajoj' regeneró la contraseña en dos días distintos. Y en cada uno de estos día solo se regeneró una sola vez. Para restaurar la contraseña haríamos lo siguiente:
+Esto quiere decir que el usuario 'xoajoj' regeneró la contraseña en dos días distintos. Y en cada uno de estos día sólo se regeneró una sola vez. Para restaurar la contraseña haríamos lo siguiente:
 
 ~~~bash
 $ git checkout $(git rev-list -n 1 --before="2013-05-19 23:59:59" --all)
@@ -353,7 +353,7 @@ Esto mejora de forma considerable los tiempos de cálculo pero existen ejemplos 
 
 ## 11. Colors
 
-De nuevo un problema de grafos. Debemos calcular el tiempo mínimo para llegar a cada una de las distintas galaxias que están conectadas por agujeros de gusano, que solo podremos utilizar si poseemos la energía de color adecuada.
+De nuevo un problema de grafos. Debemos calcular el tiempo mínimo para llegar a cada una de las distintas galaxias que están conectadas por agujeros de gusano, que sólo podremos utilizar si poseemos la energía de color adecuada.
 
 Inicialmente parecía claro tener que aplicar [Bellman–Ford](https://en.wikipedia.org/wiki/Bellman–Ford_algorithm) para obtener todos los caminos mínimos, pero en este problema las aristas pueden estar activas o no en función de nuestro estado, e incluso existir bucles (como ir y volver a otra galaxia para conseguir energía de otro color para poder usar un tipo de agujero de gusano).
 
@@ -363,7 +363,7 @@ Así que opté por implementar el algoritmo de búsqueda manualmente, aunque no 
 
 ## 12. That’s a lot of moneyz
 
-Este ha sido mi otro problema favorito del concurso de este año. Tenemos que ayudar a nuestro amigo a contar monedas. Para ello, al conectarnos a la dirección y el puerto indicados, se nos envían una serie de imágenes JPEG de las monedas que tenemos contar. Si nos conectamos con telnet o netcat veríamos esto:
+Este ha sido mi otro problema favorito del concurso de este año. Tenemos que ayudar a nuestro amigo a contar monedas. Para ello, al conectarnos a la dirección y el puerto indicados, se nos envían una serie de imágenes JPEG de las monedas que tenemos contar (siempre imágenes distintas). Si nos conectamos con telnet o netcat veríamos esto:
 
 ![](/assets/money-nc.png)
 
@@ -377,7 +377,7 @@ Así que toca echar mano de procesamiento de imágenes, cosa que siempre me hab�
 
 Una vez restaurada la imagen, el primer paso sería detectar los distintos círculos que existen en la imagen que corresponderían con las monedas aplicando [CHT (Circle_Hough_Transform)](https://en.wikipedia.org/wiki/Circle_Hough_Transform). Aplicado sobre la imagen, obtenemos una lista de puntos que se corresponden con los centros de las circunferencias detectadas junto con sus radios.
 
-Como cada moneda tiene un tamaño distinto, quizás podríamos saber de qué moneda se trata con tan solo saber el radio mas próximo. Desgraciadamente las detecciones no tienen tal nivel de exactitud, y a veces detecta círculos mas pequeños o ligeramente desplazados debido a la calidad de las imágenes.
+Como cada moneda tiene un tamaño distinto, quizás podríamos saber de qué moneda se trata sabiendo el radio mas próximo. Desgraciadamente las detecciones no tienen tal nivel de exactitud, y a veces detecta círculos mas pequeños o ligeramente desplazados debido a la calidad de las imágenes.
 
 Después de distintos intentos, opté por utilizar el algoritmo Template Matching, que permite buscar zonas de imágenes similares. Así que puesto que detectaba correctamente los centros de las monedas, lo que hice fue extraer una región cuadrada de cada uno de los centros detectados. Por otro lado, generé pequeños cuadrados de los centros de cada una de las monedas posibles que los usuarios como los patrones a buscar:
 
@@ -387,7 +387,7 @@ Por último, para cada sección cuadrada realicé una búsqueda de los patrones 
 
 ![](/assets/tuenti-coins2.png)
 
-Desgraciadamente para mi lo resolví minutos después de que se cerrara el tiempo límite y no pude entregar la solución. Para que os hagáis como les gusta a los de Tuenti complicar las pruebas, esta era una de las últimas imágenes que teníamos que resolver:
+Desgraciadamente para mi lo resolví minutos después de que se cerrara el tiempo límite y no pude entregar la solución. Para que os hagáis una idea de cómo les gusta a los de Tuenti complicar las pruebas, esta era una de las últimas imágenes que teníamos que resolver:
 
 ![](/assets/tuenti-coins3.jpg)
 
