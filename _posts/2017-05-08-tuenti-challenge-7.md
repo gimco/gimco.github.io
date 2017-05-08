@@ -347,9 +347,9 @@ Vemos que el valor de `$counter` en cada iteración se vuelve a multiplicar por 
 $counter = ($secret3 * bcpowmod($secret1, 10000000, $secret2)) % $secret2
 ~~~
 
-Esto mejora de forma considerable los tiempos de cálculo pero existen ejemplos que tardan mas. Por lo que la última opción es extraer los valores `$secret1` y `$secret2` que es lo que cambia cada día y re-implementar el algoritmo en otro lenguaje para obtener un mejor rendimiento y así evitar tantas llamadas a lenguajes interpretados.
+Esto mejora de forma considerable los tiempos de cálculo pero existen ejemplos que tardan mas. Por lo que la última opción es extraer los valores `$secret1` y `$secret2` que es lo que cambia cada día y re-implementar el algoritmo en otro lenguaje para obtener un mejor rendimiento y así evitar tantas llamadas a lenguajes interpretados, ademas de poder precalcular algunas operaciones.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/10/10.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/10)
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/10/10.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/10/10.clj)
 
 ## 11. Colors
 
