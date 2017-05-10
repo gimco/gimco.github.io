@@ -9,7 +9,14 @@ La semana pasada terminó la séptima edición del [Tuenti Challenge](https://co
 
 Aquí os dejo el análisis de los problemas y estrategia que implementé de los problemas que pude hacer y el [código de las soluciones](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017).
 
+* TOC
+{:toc}
+
+---
+
 ## 1. Pizza love
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/01/01.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/01/01.clj)
 
 El primer ejercicio suele ser sencillo, destinado principalmente a familiarizarse con el procedimiento de probar, enviar la fase de test y de submit, y tratar con los ejemplos difíciles que suelen desbordar los tipos de datos mas simples. 
 
@@ -19,9 +26,9 @@ En este caso, nos dan una lista de número que representan el número de porcion
 (Math/ceil (/ slices 8))
 ~~~
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/01/01.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/01/01.clj)
-
 ## 2. Bowling
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/02/02.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/02/02.clj)
 
 En esta ocasión tenemos que implementar el sistema de puntuación de los bolos. Las partidas constan de 10 rondas y en cada ronda tendremos que intentar tirar los 10 bolos y dos lanzamientos para conseguirlo. Si lo conseguimos a la primera habremos conseguido un "pleno" o "strike". Si conseguimos tirar todos a la segunda será un "semipleno" o "spare". Los puntos en cada ronda es igual al número de bolos tirados. Además si hicimos pleno o semipleno, sumaremos a la puntuación de ese ronda los bolos de las siguientes tiradas: los puntos de la siguiente tirada si hicimos semipleno y los puntos de las 2 siguientes tiradas si hicimos pleno.
 
@@ -42,9 +49,9 @@ Podríamos ir leyendo tirada a tirada, y actualizando varios indicadores que nos
       :else                 (recur (conj scores (+ score r1 r2)) (nnext rolls)))))
 ~~~
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/02/02.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/02/02.clj)
-
 ## 3.  Board games
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/03/03.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/03/03.clj)
 
 Ahora nos metemos en el papel de un diseñador de juegos de mesa. Nuestro objetivo es decidir cuántas cartas de puntos y de que cuantías necesitamos, para que combinándolas podamos conseguir todos las posibles puntuaciones que se pudieran dar en el juego. Por ejemplo, si nos dicen que un determinado juego de mesa se puede conseguir hasta 20 puntos, deberemos poder combinar nuestras cartas de puntos para poder obtener los valores del 1 al 20.
 
@@ -60,9 +67,9 @@ Para un juego donde máximo puedes obtener 22 puntos necesitaríamos: `⌈ log�
 
 Otra opción sin usar logaritmos es ir multiplicando por dos tantas repetidamente hasta que lleguemos o nos pasemos del número objetivo. El número de veces que hemos multiplicado por dos será el número de cartas que necesitemos.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/03/03.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/03/03.clj)
-
 ## 4. Help Pythagoras Junior
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/04/04.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/04/04.clj)
 
 Tenemos que ayudar al nieto de Pitágoras a buscar el triangulo con menor perímetros entre todos los triángulos que se puedan formar dada una lista de posibles lados. Los triángulos pueden ser de cualquier tipo (no tienen porqué ser triángulos rectángulos como en el teorema de su abuelo), por lo que para formar un triángulo, la suma de los dos lados mas pequeños debe ser mayor que el lado mas grande. Podríamos probar por fuerza bruta todas las posibles combinaciones de los tres lados, comprobar que formen un triángulo, calcular su perímetro y buscar el mínimo de todos estos valores.
 
@@ -86,9 +93,9 @@ a' + b' + c' = x'
 a' > a, b' > c   =>  x' > x
 ~~~
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/04/04.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/04/04.clj)
-
 ## 5. Ghost in the HTTP
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/05/05.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/05)
 
 Esta es una prueba de investigación. Sólo se nos presenta un enlace que al cargarlo, nos muestra un una página html simple con un mensaje y un nuevo enlace:
 
@@ -173,9 +180,9 @@ YourEffortToRemainWhatYouAreIsWhatLimitsYou
 You found me. Pushing my token, did you get it?
 ~~~
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/05/05.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/05)
-
 ## 6. The Tower
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/06/06.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/06/06.clj)
 
 Este problema parece estar inspirado la serie [Tower of God](http://towerofgod.wikia.com/wiki/Tower_of_God_(series)). Nuestro objetivo es subir a lo alto de una torre de **N** plantas. Si estamos en la planta **x**, subir la escalera a la siguiente planta nos llevará **x** años. Bajar a la planta anterior no tiene coste. También nos informan de una serie de atajos entre plantas (que pueden subir o bajar). Nos piden averiguar el mínimo número de años que tardaríamos en llegar a lo alto de la torre.
 
@@ -187,9 +194,9 @@ Si analizamos el problema vemos que podemos simplificar el grafo. Un grafo con 1
 
 Por lo para la solución final formaremos un grafo que estará formado únicamente por los nodos que pertenezcan a atajos (además de la primera y última planta). A estos nodos agregamos las arista que corresponden a los atajos. Las aristas de coste cero cuando vamos hacia atrás, y calculamos las aristas que corresponderían al camino normal de subir las escaleras.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/06/06.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/06/06.clj)
-
 ## 7. Word Soup Challenge
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/07/07.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/07)
 
 Si accedemos al enlace nos aparece el juego de sopa de letras. En este nivel tenemos 5 minutos para resolverlo. Si lo hacemos manualmente se nos mostrará el siguiente nivel que es una monstruosidad que ha de resolverse en 20 segundos.
 
@@ -228,9 +235,9 @@ solve = function () {
 }
 ~~~
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/07/07.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/07)
-
 ## 8. Uni code to rule them all
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/08/08.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/08/08.clj)
 
 Aquí ponen a prueba nuestra conocimiento sobre [Unicode](https://es.wikipedia.org/wiki/Unicode). El problema es tan sencillo como detectar en qué filas aparece un número, ignorando posibles espacios en blanco delante y detrás de este. Una vez detectado el número hay que mostrarlo en hexadecimal.
 
@@ -256,9 +263,9 @@ Tan solo debemos leer el fichero adecuadamente. Analizando los ficheros de prueb
 
 Por último y como viene siendo habitual, hay que utilizar [BigInteger](https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html) para poder tratar con los números gigantes que vienen en las pruebas, además de que esta clase soporta la conversión de cadena Unicode a número, y la transformación de número a hexadecimal.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/08/08.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/08/08.clj)
-
 ## 9. The Supreme Scalextric Architect
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/09/09.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/09/09.clj)
 
 Este ha sido uno de mis favoritos. Dado un conjunto de piezas (secciones simples, dobles y curvas), nuestra misión es averiguar las piezas necesarias para construir el circuito mas grande posible. A priori el problema parece muy complejo ya que el número de combinaciones posibles parece bastante grande.
 
@@ -274,9 +281,9 @@ Si representamos cada operaciones como un vector de tres valores [S C D], con el
 
 Cualquier otro circuito o transformación estaría compuesto por varias de estas 12 transformaciones mínimas. Ahora el espacio de búsqueda se reduce en gran medida y podemos abarcarla en tiempo. Empezaríamos con un vector que se corresponde con el número total de piezas disponibles, y comenzaríamos a aplicar transformaciones básicas que consistiría en restar el vector correspondiente. Además, dado un conjunto de piezas muy grande, podríamos simplificarlo eliminando de forma repetitiva un conjunto fijo de transformaciones como [8 8 8] por ejemplo.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/09/09.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/09/09.clj)
-
 ## 10. Passwords
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/10/10.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/10/10.clj)
 
 Hemos borrado la base de datos de contraseñas de los usuarios y debemos intentar restaurar los contraseñas de todos ellos. Afortunadamente las contraseñas son autogeneradas por un algoritmo que cambia cada día y tenemos el log de cuando cada usuario regeneró la contraseña. Como disponemos del repositorio git con el código del algoritmo, sólo tenemos que saber la fecha, buscar la versión del algoritmo y ejecutarlo. Para buscar la versión del código podemos utilizar el siguiente comando:
 
@@ -349,9 +356,9 @@ $counter = ($secret3 * bcpowmod($secret1, 10000000, $secret2)) % $secret2
 
 Esto mejora de forma considerable los tiempos de cálculo pero existen ejemplos que tardan mas. Por lo que la última opción es extraer los valores `$secret1` y `$secret2` que es lo que cambia cada día y re-implementar el algoritmo en otro lenguaje para obtener un mejor rendimiento y así evitar tantas llamadas a lenguajes interpretados, ademas de poder precalcular algunas operaciones.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/10/10.html) y [Solución](https://github.com/gimco/programming-challenges/tree/master/tuenti-contest-2017/10/10.clj)
-
 ## 11. Colors
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/11/11.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/11/11.clj)
 
 De nuevo un problema de grafos. Debemos calcular el tiempo mínimo para llegar a cada una de las distintas galaxias que están conectadas por agujeros de gusano, que sólo podremos utilizar si poseemos la energía de color adecuada.
 
@@ -359,9 +366,9 @@ Inicialmente parecía claro tener que aplicar [Bellman–Ford](https://en.wikipe
 
 Así que opté por implementar el algoritmo de búsqueda manualmente, aunque no es la solución válida ya que el tiempo crece exponencialmente. Del enunciado se intuye que nuestro estado y cada galaxia se podría representar como un número binario, donde cada bit indica la existencia o no de la energía de un color, y las aristas como máscaras binarias para saber si la cumplimos o no. Aunque en mi caso no exploré esta opción y decidí saltar el ejercicio por que el tiempo se terminaba.
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/11/11.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/11/11.clj)
-
 ## 12. That’s a lot of moneyz
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/12/12.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/12/Tuenti7Challenge12.java)
 
 Este ha sido mi otro problema favorito del concurso de este año. Tenemos que ayudar a nuestro amigo a contar monedas. Para ello, al conectarnos a la dirección y el puerto indicados, se nos envían una serie de imágenes JPEG de las monedas que tenemos contar (siempre imágenes distintas). Si nos conectamos con telnet o netcat veríamos esto:
 
@@ -391,8 +398,109 @@ Desgraciadamente para mi lo resolví minutos después de que se cerrara el tiemp
 
 ![](/assets/tuenti-coins3.jpg)
 
-[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/12/12.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/12/Tuenti7Challenge12.java)
+## 13. R’lyeh
+
+[Problema](https://cdn.rawgit.com/gimco/programming-challenges/master/tuenti-contest-2017/13/13.html) y [Solución](https://github.com/gimco/programming-challenges/blob/master/tuenti-contest-2017/13/13.cpp)
+
+Después de una intrigante introducción basada en [Lovecraft](https://es.wikipedia.org/wiki/H._P._Lovecraft), se nos insta a averiguar la relación entre los números esculpidos y escritos sobre una estatua. Tenemos la función que dado un número esculpido, nos devuelve el número escrito correspondiente. Pero se nos pide justo lo contrario, dado un conjunto de número escritos, averiguar el esculpido correspondiente. El problema es tan sencillo como implementar la función inversa a la que no dan. Sencillo si no fuera por el aspecto de esta función:
+
+~~~cpp
+int64_t carvedToWritten(int64_t n)
+{
+    int64_t r = 0;
+    for (int64_t i = 0; i < 64; ++i)
+    {
+        int64_t a = 0;
+        for (int64_t j = n; j >= 0; --j)
+        {
+            int64_t b = 0;
+            for (int64_t k = 0; k <= i; ++k)
+            {
+                int64_t c = a ^ ((i & (n ^ j) & 1) << k);
+                a ^= (j & (1LL << k)) ^ b;
+                b = (((c & j) | ((c ^ j) & b)) & (1LL << k)) << 1;
+            }
+        }
+        r |= (a & (1LL << i));
+    }
+    return r;
+}
+~~~
+
+Misión imposible intentar entender que hace. Si usamos esta función para generar 1000 pares de números `(carved - written)` y los ordenamos por written tampoco apreciamos relación alguna:
+
+~~~
+written | carved                           written | carved
+--------+-------                           --------+-------
+     1  |      1                                24 |    143
+     2  |      4                                25 |     17
+     4  |      8                                30 |     19
+     5  |      9                                32 |     64
+     6  |      3                                33 |     66
+     7  |      5                                34 |    587
+     8  |     16                                37 |     73
+     9  |     18                                64 |    128
+     14 |    572                                65 |    129
+     16 |     32                                66 |     11
+     17 |     33                                67 |     14
+     18 |     36                                70 |     12
+     20 |      7                                71 |     38
+     21 |     10                                72 |    144
+     23 |      6                                75 |    573
+...           
+~~~
+
+Si nos fijamos bien en la función, vemos que hay un bucle exterior que itera 64 veces y realiza la operación `r |= (a & (1LL << i))`. Que es lo mismo que establecer los bits del 0 al 64 del resultado final. Si agregamos un `printf` en este punto para ver los valores que va tomando la variable `a` en cada iteración observamos lo siguiente:
+
+![](/assets/carved-to-written.png)
+
+Ahora si que vemos un patrón que se repite constamente. Para los bits impares se toma el valor `(n + 1) / 2`, y para los pares `n * (n + 1) / 2`. Así que podemos simplificar la función original, que además mejorará el rendimiento:
+
+~~~cpp
+int64_t carvedToWrittenFast(int64_t n)
+{
+    int64_t r = 0;
+    for (int64_t i = 0; i < 64; ++i)
+    {
+        int64_t a = 0;
+
+        if (i % 2 == 0) {
+            a = n * (n + 1) / 2;
+        } else {
+            a = (n + 1) / 2;
+        }
+
+        r |= (a & (1LL << i));
+    }
+    return r;
+}
+~~~
+
+Una vez comprobamos que esta nueva función es equivalente a la primera, podemos analizar su funcionamiento. Podemos obtener los bits impares de `n` directamente del valor de `r`, realizando la operación inversa a `(n + 1) / 2`:
+
+![](/assets/rlyeh.png)
+
+Como sabemos que el número objetivo es de 32 bits, y gracias a la operación anterior conocemos ya 16 bits del valor final, la opción mas sencilla es calcular por fuerza bruta los otros 16 bits restantes, lo que nos llevará a probar 65536 valores en el peor de los casos:
+
+~~~cpp
+uint32_t writtenToCarved(int64_t r) {
+    
+    uint32_t m = (r & 0xAAAAAAAA) << 1;
+    for (int i = 0; i < 0xFFFF; i++) {
+        uint32_t n = m;
+        for (int k = 0; k < 16; k++) {
+            n |= (i & (1 << k)) << (k + 1);
+        }
+        if (carvedToWrittenFast(n - 1) == r) {
+            return n - 1;
+        } else if (carvedToWrittenFast(n) == r) {
+            return n;
+        }
+    }
+    return 0;
+}
+~~~
 
 ---
 
-Me quedaron por solucionar tres problemas más: *R’lyeh*, *Blackjack* y *Intervals*, que en otro momento intentaré solucionar y actualizaré esta entrada con su correspondiente análisis.
+Me quedan por solucionar dos problemas: *Blackjack* y *Intervals*, que en otro momento intentaré solucionar y actualizaré esta entrada con su correspondiente análisis.
