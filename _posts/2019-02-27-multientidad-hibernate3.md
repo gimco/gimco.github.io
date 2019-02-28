@@ -5,38 +5,38 @@ title: Multientidad con Hibernate 3
 
 En una antigua aplicación se presentó la necesidad de agregar un nuevo conjunto de usuarios de forma que pudieran administrar sus datos y procedimientos de forma independiente al conjunto actual de usuarios. Estaríamos ante el clásico problema de la multientidad (multi-tenancy). 
 
-El término multientidad es una arquitectura en la que una única instancia de la aplicación es capaz de dar servicio a varios clientes (entidades), muy común en sistemas SaaS ([Software as a Service][saas]). El problema que se intenta resolver es el aislamiento de la información entre las distintas entidades.
+El término multientidad hace referencia a una arquitectura en la que una única instancia de la aplicación es capaz de dar servicio a varios clientes (entidades), muy común en sistemas SaaS ([Software as a Service][saas]). El problema que se intenta resolver es el aislamiento de la información entre las distintas entidades.
 
 En un sistema con soporte multientidad podemos crear distintos conjunto de datos independientes que serían nuestra entidades. Cada entidad tendrá su propio conjunto de información, usuarios, roles y administradores independientes de las otras entidades. 
 
 ## Tipo de multientidad
 
-La aplicación en cuestión no fue creada con esta capacidad desde el principio, por podríamos abordar este nuevo requisito de distintas formas:
+La aplicación en cuestión no fue creada con esta capacidad desde el principio, por lo que podríamos abordar este nuevo requisito de distintas formas:
 
-- *Realizar un nuevo despliegue.* ¡Esto no dotaría a la aplicación de la capacidad de ser multientidad!, pero resolvería el problema forma puntual. Un nuevo despliegue no requeriría la modificación de la aplicación actual, ya que sólo tendríamos que crear un nuevo entorno (con una url diferente) y una nueva base de datos. Esta no es una opción escalable, puesto que conforme aumenten el número de entidades desperdiciamos recursos y aumentamos la complejidad del mantenimiento.
-- *Usar una base de datos distinta por entidad.* En este caso modificaríamos la aplicación para que sea capaz de decidir qué conexión de base de datos debe utilizar para cada petición solicitada.
+- *Una instancia por entidad.* Realizaríamos un nuevo despliegue para dar servicio a la nueva entidad. ¡Esto no dotaría a la aplicación de capacidad multientidad!, pero resolvería el problema de forma puntual. Un nuevo despliegue no requeriría la modificación de la aplicación actual, ya que sólo tendríamos que crear un nuevo entorno (con una url diferente) y una nueva base de datos. Esta no es una opción escalable, puesto que conforme aumenten el número de entidades desperdiciamos recursos y aumentamos la complejidad del mantenimiento.
+- *Usar una base de datos distinta por entidad.* En este caso modificaríamos la aplicación para que sea capaz de decidir qué conexión de base de datos se debe utilizar para cada petición solicitada.
 - *Usar un esquema de base de datos por entidad.* Este caso es similar al anterior pero sólo utilizamos una única base de datos (y un pool de conexiones común), y lo que hacemos es establecer el usuario o el esquema según cada entidad (utilizando `CONNECT` o `ALTER SESSION SET CURRENT_SCHEMA`).
 - *Multientidad lógica.* En este caso se utiliza una única base de datos y esquema, y agregamos un campo discriminador en cada una de las tablas que necesitemos independizar por cada entidad. Es decir, agregamos una nueva columna entidad a ciertas tablas que nos indica a que entidad corresponde cada fila de datos.
 
 ![](/assets/multientidad-tipos.png)
 
-Las opciones mas populares son las dos últimas, y la utilización de una u otra lo marcará las necesidades concretas. Por ejemplo si estamos creando una plataforma SaaS y queremos permitir que los usuarios puedan crear de forma autónoma nuevas entidades como parte del proceso de registro, probablemente usemos la última opción.
+Las opciones mas populares son las dos últimas, y la utilización de una u otra lo marcará nuestras necesidades concretas. Por ejemplo, si la creación de nuevas entidades no forma parte de la lógica principal, y se realiza de forma esporádica (mediante intervención del equipo de sistemas o DBAs) optaremos por la opción de un esquema por entidad. Esta opción además tiene la ventaja de simplificar las copias de seguridad y restauración de los datos de la entidad.
 
-Si por el contrario, la creación de nuevas entidades no forma parte de la lógica principal, y se realiza de forma esporádica (mediante intervención del equipo de sistemas o DBAs) optaremos por la opción de un esquema por entidad. Esta opción además tiene la ventaja de simplificar las copias de seguridad y restauración de los datos de la entidad.
+Si por el contrario estamos creando una plataforma SaaS y queremos permitir que los usuarios puedan crear de forma autónoma nuevas entidades como parte del proceso de registro, probablemente usemos la última opción.
 
 ## Impacto
 
-En el caso concreto de esta antigua aplicación web se decidió utilizar la opción del campo discriminador. La librería de persistencia utilizada era Hibernate, la cuál tiene distintos tipos de [soporte multientidad][hibernate-multi] a partir de la [versión 4.2][discriminador]. Desgraciadamente la versión utilizada era la 3.3 y el intento de actualización de las librerías desencadenaba la subida de versiones de otros módulos que tendría un gran impacto en el código existente (dependency hell). Por lo que se decidió implementar la multientidad con la versión de Hibernate utilizada.
+En el caso concreto de esta antigua aplicación web se decidió utilizar la opción del campo discriminador. La librería de persistencia utilizada era Hibernate, la cuál tiene distintos tipos de [soporte multientidad][hibernate-multi] a partir de la [versión 4.2][discriminador]. Desgraciadamente la versión utilizada era la 3.3 y el intento de actualización de las librerías desencadenaba la subida de versiones de otros módulos que tendrían un gran impacto en el código existente (dependency hell). Por lo que se decidió implementar la multientidad con la versión de Hibernate utilizada.
 
-El primer paso sería agregar el campo discriminador `entidad` en cada una de la tablas que deban tener subconjuntos de datos independientes. Posteriormente tendríamos que modificar todas y cada una de las consultas HQL de la aplicación para agregar una nueva condición de la entidad, y cada uno de los métodos para agregar el nuevo parámetro con el valor de la entidad que queremos consultar o modificar los datos. Por toda la aplicación estaríamos arrastrando el parámetro de la entidad activa para filtrar los datos adecuadamente. Haciendo esto estaríamos contaminando nuestro modelo para implementar un aspecto que debería ser transversal.
+El primer paso sería agregar el campo discriminador `entidad` en cada una de la tablas que deban tener subconjuntos de datos independientes. Posteriormente tendríamos que modificar todas y cada una de las consultas HQL de la aplicación para agregar una nueva condición de la entidad, y cada uno de los métodos agregar el nuevo parámetro con el valor de la entidad que queremos consultar o modificar los datos. Por toda la aplicación estaríamos arrastrando el parámetro de la entidad activa para filtrar los datos adecuadamente. Haciendo esto estaríamos *contaminando* nuestro modelo para implementar un aspecto que debería ser transversal.
 
 ## Implementación
 
-Lo primero que haremos es agregar las columnas que harán de discriminador en las tablas. Estas nuevas columnas pueden ser claves ajenas hacia una tabla donde almacenemos información adicional de la Entidad. Si alguna de las tablas tuviera claves únicas (por ejemplo alguna columna que fuera un código), tendríamos que modificar la condición del índice de unicidad para agregar la columna entidad. No es el caso de las claves primarias (y por tanto únicas) que suelen rellenarse a partir de un objeto secuencia.
+Lo primero que haremos es modificar el esquema de base de datos y agregar las columnas que harán de discriminador en las tablas. Estas nuevas columnas pueden ser claves ajenas hacia una tabla donde almacenemos información adicional de la Entidad. Si alguna de las tablas tuviera claves únicas (por ejemplo alguna columna que fuera un código), tendríamos que modificar la condición del índice de unicidad para agregar la columna entidad. No es el caso de las claves primarias (y por tanto únicas) que suelen rellenarse a partir de un objeto secuencia.
 
 ![](/assets/multientidad.png)
 
-Las columnas entidad solo serían necesarias en las tablas de primer nivel. Las tablas de primer nivel son aquella que no dependen de otras. Por ejemplo, en una aplicación que gestione facturas en la que todos los usuarios (de la misma entidad) puedan consultarlas indistintamente, la tabla `Facturas` serían un caso de tabla de primer nivel. Las tablas que almacenan el detalle de estas facturas (las líneas de facturas por ejemplo) no necesitaría un campo discriminador ya que siempre se obtendrían a partir de su tabla padre la cuál ya tendría asociada la entidad a la que pertenece. Es decir, la pertenencia del dato a la entidad se resuelve de forma transitiva a través de las las tablas a las que apuntan las claves ajenas.
+Las columnas entidad solo serían necesarias en las tablas de primer nivel. Las tablas de primer nivel son aquellas que no dependen de otras. Por ejemplo, en una aplicación que gestionase facturas en la que todos los usuarios (de la misma entidad) pudiesen consultarlas indistintamente, la tabla `Facturas` serían un caso de tabla de primer nivel. Las tablas que almacensaen el detalle de estas facturas (las líneas de facturas por ejemplo) no necesitarían un campo discriminador, ya que siempre se obtendrían a partir de su tabla padre la cuál ya tendría asociada la entidad a la que pertenece. Es decir, la pertenencia del dato a la entidad se resuelve *de forma transitiva* a través de las tablas a las que apuntan las claves ajenas.
 
 Para implementar el soporte multientidad de forma transparente aprovecharemos la funcionalidad de [definición de filtros de Hibernate][filters] que nos permite activar o desactivar ciertas condiciones en la sesión de Hibernate para filtrar las consultas de datos. Después de realizar las modificaciones en el esquema de base de datos, crearemos un interfaz con los métodos getter y setter para este nuevo atributo discriminador. Cada clase de dominio de primer nivel que queramos independizar por entidad deberá implementar este interfaz.
 
@@ -92,9 +92,10 @@ Ya tendríamos marcadas todas las entidades que necesitamos filtrar. Ahora tendr
 public class BaseDO {
     ...
 
-    public Session getSession() {
+    protected Session getSession() {
         Session session = sessionFactory.getCurrentSession();
-        session.enableFilter(FiltrarPorEntidad.FILTRO)
+        session
+            .enableFilter(FiltrarPorEntidad.FILTRO)
             .setParameter("entidad", getEntidadActiva());
         return session;
     }
@@ -116,7 +117,7 @@ public class BaseDO {
 }
 ~~~
 
-Una parte interesate es cómo saber qué entidad es la activa en cada momento. Esto dependerá de la arquitectura de cada proyecto. Lo mas habitual es crear algún tipo de Filter o Interceptor que se ejecute al principio de cada petición y que averigüe la entidad, ya sea viendo el dominio, url, algún parámetro de sesión o extrayéndolo del usuario autenticado. Una vez averiguado estableceremos el valor de la entidad activa en alguna clase utilidad u objeto ThreadLocal que podamos consultar desde `BaseDAO.getEntidadActiva()`.
+Una parte interesate es cómo saber qué entidad es la activa en cada momento. Esto dependerá de la arquitectura de cada proyecto. Lo mas habitual es crear algún tipo de Filter o Interceptor que se ejecute al principio de cada petición y que averigüe la entidad, ya sea viendo el dominio, la url, algún parámetro de sesión o extrayéndolo del usuario autenticado. Una vez averiguado estableceremos el valor de la entidad activa en alguna clase utilidad u objeto ThreadLocal que podamos consultar desde `BaseDAO.getEntidadActiva()`.
 
 Hasta aquí habríamos conseguido que de forma transparente cada vez que en una consulta aparezca alguna clase de dominio se agregue el filtro por entidad de forma automática.
 
